@@ -1,2 +1,2 @@
-export * from './AppLoading';
-export * from './ProcessButton';
+export * from './components/Loading';
+export * from './components/Button';

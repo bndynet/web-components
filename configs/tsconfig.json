@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
       "moduleResolution": "node",
-      "target": "es2017",
       "module":"es2015",
+      "target": "es2017",
       "lib": ["es2017", "dom"],
       "strict": true,
       "jsx": "react",
@@ -11,13 +11,17 @@
       "allowSyntheticDefaultImports": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "declarationDir": "dist/types",
-      "outDir": "dist/lib",
+      "listFiles": false,
+      "declarationDir": "../dist/types",
+      "outDir": "../dist/lib",
       "typeRoots": [
-        "node_modules/@types"
+        "../node_modules/@types"
       ]
     },
     "include": [
-      "src"
+      "../src/**/*"
+    ],
+    "exclude": [
+      "../src/**/*.spec.ts"
     ]
 }

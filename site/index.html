@@ -102,11 +102,16 @@
 
     <section id="example">
       <h1>Example</h1>
+      <div class="bg-light" style=" height: 50px; margin: 20px; padding: 20px;">
+        <ui-loading theme="danger"></ui-loading>
+        Loading...
+      </div>
+      <br />
       <div>
         <my-hello name="Bendy"></my-hello>
-        <app-loading theme="danger"></app-loading>
-        <process-button theme="primary" text="Submit"></process-button>
-        <process-button processing theme="success" text="Download"></process-button>
+        <ui-button text="Submit"></ui-button>
+        <ui-button text="Disabled" disabled></ui-button>
+        <ui-button pending theme="danger" text="Download"></ui-button>
       </div>
     </section>
 
