@@ -11,6 +11,7 @@ export class Button extends RootElement {
 
   public constructor() {
     super();
+    this.theme = 'light';
   }
 
   public render() {

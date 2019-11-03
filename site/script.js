@@ -19,12 +19,12 @@ function appendNav(navText) {
 
 $(function() {
   var navs = {
-    Components: ['Button', 'Loading'],
+    Components: ['Buttons', 'Loading', 'Indicators'],
   };
 
   setTimeout(function() {
     $('#pageLoading').remove();
-  }, 3000);
+  }, 1000);
 
   var eleMain = $('main');
   Object.keys(navs).forEach(function(key) {

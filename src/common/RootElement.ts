@@ -2,7 +2,7 @@ import { LitElement, property } from 'lit-element';
 import { getElementStyle } from '../utils';
 
 export abstract class RootElement extends LitElement {
-  @property({type: String}) public theme = 'primary';
+  @property({type: String}) public theme = '';
 
   public constructor() {
     super();

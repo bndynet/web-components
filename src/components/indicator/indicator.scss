@@ -1,0 +1,44 @@
+ui-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.square {
+    span {
+      border-radius: 0;
+    }
+  }
+
+  &.rectangle {
+    span {
+      width: 2em;
+      height: 0.25em;
+      border-radius: 0;
+
+      &.active {
+        width: 2em;
+        height: 0.25em;
+        transform: scale(1);
+      }
+    }
+  }
+
+  span {
+    display: inline-block;
+    padding: 0.5em 0.25em;
+    width: 0.75em;
+    height: 0.75em;
+    opacity: 0.4;
+    border-radius: 50%;
+    background-clip: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+
+    &.active {
+      opacity: 1;
+      cursor: inherit;
+      transition: all 0.5s;
+      transform: scale(1.25);
+    }
+  }
+}
