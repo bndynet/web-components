@@ -1,6 +1,3 @@
-html {
-  font-size: 14px;
-}
 aside {
   position: fixed;
   top: 80px;
@@ -21,8 +18,9 @@ main section {
   padding-top: 15px;
   margin-bottom: 20px;
 }
-main section h1 {
-  margin-bottom: 1rem;
+main h2,
+main h3 {
+  padding-top: 1rem;
 }
 
 .forkme {
@@ -37,4 +35,17 @@ main section h1 {
 }
 #changelog-body h3 {
   margin: 0.5rem 0;
+}
+
+/**/
+
+section .modal {
+  position: static;
+  display: block;
+}
+
+section pre {
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #efefef;
 }

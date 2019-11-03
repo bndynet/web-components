@@ -1,0 +1,17 @@
+ui-button {
+  .loading {
+    display: none;
+    height: 0;
+    & > span {
+      margin-top: 0.25em;
+    }
+  }
+  .pending {
+    .loading {
+      display: block;
+    }
+    .text {
+      visibility: hidden;
+    }
+  }
+}

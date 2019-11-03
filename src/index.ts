@@ -1,3 +1,4 @@
-import './styles/main.scss';
+import './index.scss';
 
-export * from './scripts';
+export * from './components/loading/loading';
+export * from './components/button/button';
