@@ -2,23 +2,23 @@ import { LitElement, property } from 'lit-element';
 import { getElementStyle } from '../utils';
 
 export abstract class RootElement extends LitElement {
-  @property({type: String}) public theme = '';
+  @property({ type: String }) public theme = '';
 
   public constructor() {
     super();
   }
 
-  public createRenderRoot() {
+  public createRenderRoot(): RootElement {
     return this;
   }
 
-  protected fillParent(attachStyles?: string) {
+  protected fillParent(attachStyles?: string): void {
     if (this.parentElement) {
       this.parentElement.style.position = 'relative';
       const parentPaddingTop = getElementStyle(this.parentElement, 'padding-top');
       const parentPaddingLeft = getElementStyle(this.parentElement, 'padding-left');
       const parentBorderRadius = getElementStyle(this.parentElement, 'border-radius');
-      const originStyle = this.getAttribute('style') ? this.getAttribute('style')  + ';' : '';
+      const originStyle = this.getAttribute('style') ? this.getAttribute('style') + ';' : '';
       attachStyles = attachStyles ? attachStyles + ';' : '';
       const style = `position: absolute;
         display: flex;
