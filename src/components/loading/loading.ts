@@ -1,4 +1,4 @@
-import { html, customElement, css } from 'lit-element';
+import { html, customElement, TemplateResult } from 'lit-element';
 import { RootElement } from '../../common/RootElement';
 
 import './loading.scss';
@@ -9,11 +9,8 @@ export class Loading extends RootElement {
     super();
   }
 
-  public render() {
-    this.fillParent(this.theme === 'dark'
-      ? `background-color: rgba(0, 0, 0, 0.4); z-index: 99999;`
-      : `background-color: rgba(255, 255, 255, 0.4); z-index: 99999`
-      );
+  public render(): TemplateResult {
+    this.fillParent(this.theme === 'dark' ? `background-color: rgba(0, 0, 0, 0.4); z-index: 99999;` : `background-color: rgba(255, 255, 255, 0.4); z-index: 99999`);
     const spinnerTheme = this.theme === 'dark' ? 'text-light' : `text-${this.theme}`;
     return html`
       <div class="spinner-border ${spinnerTheme}" role="status">
