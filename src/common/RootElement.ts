@@ -58,4 +58,38 @@ export abstract class RootElement extends LitElement {
       part.setValue(attrValue);
     }
   });
+
+  protected isOutsideEvent(evt: Event): boolean {
+    let targetElement = evt.target;
+
+    while (targetElement) {
+      if (targetElement == this) {
+        return false;
+      }
+      targetElement = (targetElement as HTMLElement).parentNode;
+    }
+    return true;
+  }
+
+  protected removeChildren(element: Element): void {
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  }
+
+  protected formatTemplate(template: string | undefined | null, value: any): string {
+    if (!template) {
+      return '';
+    }
+
+    if (typeof value !== 'object') {
+      return template.replace(/\{0\}/g, value);
+    } else {
+      let result = template;
+      Object.keys(value).forEach((key: string) => {
+        result = result!.replace(new RegExp(`{${key}}`, 'g'), value[key]);
+      });
+      return result;
+    }
+  }
 }

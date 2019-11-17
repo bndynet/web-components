@@ -19,7 +19,7 @@ function appendNav(navText) {
 
 $(function() {
   var navs = {
-    Components: ['Buttons', 'Loading', 'Indicators', 'Input'],
+    Components: ['Buttons', 'Loading', 'Indicators', 'Input', 'Select'],
   };
 
   setTimeout(function() {
