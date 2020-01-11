@@ -45,6 +45,10 @@ export class Input extends RootElement {
       'invalid-feedback': this.isInvalid(),
       'valid-feedback': this.isValid(),
     };
+    const colorFlagClass = {
+      'input-group-flag': true,
+      'input-group-flag-empty': !this.value,
+    };
     let htmlAdditionalMessage: TemplateResult = html``;
     if (this.feedbackMessage) {
       htmlAdditionalMessage = html`
@@ -73,13 +77,22 @@ export class Input extends RootElement {
                 <span class="input-group-text">${this.prefix}</span>
               </div>
             `}
-          <input id="${this.ifAttr(!!this.id, `${this.id}-input`)}" name="${this.ifAttr(!!this.id, `${this.id}-input`)}" type="${this.type}" value="${this.value}" class="${classMap(inputClass)}" placeholder="${this.placeholder}" ?disabled=${this.disabled} ?required=${this.required} aria-label="${this.placeholder}" />
+          <input id="${this.ifAttr(!!this.id, `${this.id}-input`)}" name="${this.ifAttr(!!this.id, `${this.id}-input`)}" type="${this.type === 'color-text' ? 'text' : this.type}" value="${this.value}" class="${classMap(inputClass)}" placeholder="${this.placeholder}" ?disabled=${this.disabled} ?required=${this.required} aria-label="${this.placeholder}" />
           ${this.suffix &&
             html`
               <div class="input-group-append">
                 <span class="input-group-text">${this.suffix}</span>
               </div>
             `}
+          ${this.type === 'color-text'
+            ? html`
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <span class="${classMap(colorFlagClass)}" style="background-color: ${this.value}"></span>
+                  </span>
+                </div>
+              `
+            : ``}
         </div>
         ${this.ifShowHtml(!this.label, htmlAdditionalMessage)}
       </div>
