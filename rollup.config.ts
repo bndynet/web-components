@@ -1,5 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
 import json from 'rollup-plugin-json';
@@ -10,6 +10,7 @@ import postcss from 'postcss';
 import { terser } from 'rollup-plugin-terser';
 
 const pkg = require('./package.json');
+const config = require('./src/config.js');
 
 const libraryName = pkg.name.indexOf('/') > 0 ? pkg.name.split('/')[1].toLocaleLowerCase() : pkg.name.toLocaleLowerCase();
 
@@ -36,13 +37,17 @@ export default {
   plugins: [
     sass({
       output: `dist/${libraryName}.css`,
-      processor: css =>
-        postcss([autoprefixer])
+      options: {
+        data: `$prefix: '${config.elementPrefix}';`,
+      },
+      processor: css => {
+        return postcss([autoprefixer])
           .process(
             css,
             { from: undefined }, // fix PostCSS without `from` warning
           )
-          .then(result => result.css),
+          .then(result => result.css);
+      },
     }),
     terser(),
     // Allow json resolution
@@ -52,9 +57,15 @@ export default {
       tsconfig: './tsconfig.json',
       useTsconfigDeclarationDir: true,
     }),
+
+    // Allow node_modules resolution, so you can use "external" to control
+    // which external modules to include in the bundle
+    // https://github.com/rollup/rollup-plugin-node-resolve#usage
+    resolve(),
+
     // Allow bundling cjs modules (unlike webpack, rollup doesn"t understand cjs)
     commonjs({
-      include: 'node_modules/**',
+      include: ['node_modules/**', './src/**'],
       namedExports: {
         // "node_modules/react/index.js": [
         //   "Component",
@@ -67,10 +78,6 @@ export default {
         // ],
       },
     }),
-    // Allow node_modules resolution, so you can use "external" to control
-    // which external modules to include in the bundle
-    // https://github.com/rollup/rollup-plugin-node-resolve#usage
-    resolve(),
 
     babel({
       exclude: 'node_modules/**',

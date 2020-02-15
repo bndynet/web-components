@@ -1,11 +1,11 @@
-import { customElement, html, property, TemplateResult } from 'lit-element';
+import { html, property, TemplateResult } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { RootElement } from '../../common/RootElement';
+import { RootElement, htmlElement } from '../../core';
 
-import './input.scss';
+import './style.scss';
 
-@customElement('ui-input')
+@htmlElement(`input`)
 export class Input extends RootElement {
   @property({ type: String }) label = '';
   @property({ type: String, reflect: true }) value = '';

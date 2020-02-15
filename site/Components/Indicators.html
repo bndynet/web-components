@@ -1,9 +1,9 @@
-<ui-indicator length="5"></ui-indicator>
-<ui-indicator class="square" theme="primary" length="5" active="1"></ui-indicator>
-<ui-indicator class="rectangle" theme="success" length="3" active="2"></ui-indicator>
-<ui-indicator class="bg-dark" theme="light" length="5"></ui-indicator>
+<web-indicator length="5"></web-indicator>
+<web-indicator class="square" theme="primary" length="5" active="1"></web-indicator>
+<web-indicator class="rectangle" theme="success" length="3" active="2"></web-indicator>
+<web-indicator class="bg-dark" theme="light" length="5"></web-indicator>
 <script>
-  const indicators = document.querySelector('ui-indicator');
+  const indicators = document.querySelector('web-indicator');
   indicators.addEventListener('index-changed', function(e) {
     console.debug(e.detail);    // output: {index: 0}
   });

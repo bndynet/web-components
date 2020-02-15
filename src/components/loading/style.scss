@@ -1,4 +1,4 @@
-body > ui-loading {
+body > #{$prefix}loading {
   .spinner-border {
     width: 3rem;
     height: 3rem;

@@ -1,11 +1,13 @@
-<ui-select options='["Option 1", "Option 2"]' value="Option 2" placeholder="Choose the item..."></ui-select>
-<ui-select label="Country" options='[
+<web-select options='["Option 1", "Option 2"]' value="Option 2" placeholder="Choose the item...">
+</web-select>
+<web-select label="Country" options='[
   {"label": "China", "value": "China", "description": "Here is the country description."},
   {"label": "Canada", "value": "Canada", "description": "Here is the country description."}
   ]' value="Canada" value-field="value"
   value-template="<img src='https://www.printableworldflags.com/icon-flags/24/{label}.png'> {label} <small class='text-muted'>{description}</small>"
-  option-template="<img src='https://www.printableworldflags.com/icon-flags/24/{label}.png'> {label} <br /> <small class='text-muted'>{description}</small>"></ui-select>
-<ui-select label="Country" options='[
+  option-template="<img src='https://www.printableworldflags.com/icon-flags/24/{label}.png'> {label} <br /> <small class='text-muted'>{description}</small>">
+</web-select>
+<web-select label="Country" options='[
   {"label": "China", "value": "China", "description": "Here is the country description."},
   {"label": "Canada", "value": "Canada", "description": "Here is the country description."},
   {"label": "Chad", "value": "Chad", "description": "Here is the country description."},
@@ -16,4 +18,5 @@
   {"label": "Kosovo", "value": "Kosovo", "description": "Here is the country description."}
   ]' value="China" value-field="value"
   disabled-field="disabled"
-  option-template="<img src='https://www.printableworldflags.com/icon-flags/24/{label}.png'> {label} <br /> <small class='text-muted'>{description}</small>" required></ui-select>
+  option-template="<img src='https://www.printableworldflags.com/icon-flags/24/{label}.png'> {label} <br /> <small class='text-muted'>{description}</small>" required>
+</web-select>
