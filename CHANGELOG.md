@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/bndynet/web-components/compare/v1.2.0...v2.0.0) (2020-02-17)
+
+
+### Code Refactoring
+
+* change element prefix to web ([26d1213](https://github.com/bndynet/web-components/commit/26d1213))
+
+
+### BREAKING CHANGES
+
+* rename all elements starts with 'web-'
+
 # [1.2.0](https://github.com/bndynet/web-components/compare/v1.1.0...v1.2.0) (2020-02-15)
 
 
