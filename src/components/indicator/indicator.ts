@@ -1,33 +1,36 @@
-import { RootElement } from '../../common/RootElement';
-import { customElement, html, property, eventOptions } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, property, TemplateResult } from 'lit-element';
+import { RootElement, htmlElement } from '../../core';
 
-import './indicator.scss';
+import './style.scss';
 
-@customElement('ui-indicator')
+@htmlElement(`indicator`)
 export class Indicator extends RootElement {
-
-  @property({ converter: (value, type) => {
-    const items = [];
-    const num = Number(value);
-    for (let i = 0; i < num; i++) {
-      items.push(i);
-    }
-    return items;
-  }}) public length: number[] = [];
-  @property({type: Number}) public active: number = 0;
+  @property({
+    converter: (value, type) => {
+      const items: number[] = [];
+      const num = Number(value);
+      for (let i = 0; i < num; i++) {
+        items.push(i);
+      }
+      return items;
+    },
+  })
+  public length: number[] = [];
+  @property({ type: Number }) public active = 0;
 
   public constructor() {
     super();
     this.theme = 'dark';
   }
 
-  public render() {
+  public render(): TemplateResult {
     return html`
-        ${this.length.map((index) => {
-          const classes = `bg-${this.theme} ${index === this.active ? 'active': ''}`.trim();
-          return html`<span class="${classes}" @click=${(e: any) => this.itemClick(index, e)}></span>`;
-        })}
+      ${this.length.map(index => {
+        const classes = `bg-${this.theme} ${index === this.active ? 'active' : ''}`.trim();
+        return html`
+          <span class="${classes}" @click=${(e: any) => this.itemClick(index, e)}></span>
+        `;
+      })}
     `;
   }
 

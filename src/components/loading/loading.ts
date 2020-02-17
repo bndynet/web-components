@@ -1,9 +1,9 @@
-import { html, customElement, TemplateResult } from 'lit-element';
-import { RootElement } from '../../common/RootElement';
+import { html, TemplateResult } from 'lit-element';
+import { RootElement, htmlElement } from '../../core';
 
-import './loading.scss';
+import './style.scss';
 
-@customElement('ui-loading')
+@htmlElement(`loading`)
 export class Loading extends RootElement {
   public constructor() {
     super();

@@ -1,9 +1,9 @@
-import { html, customElement, property, TemplateResult } from 'lit-element';
-import { RootElement } from '../../common/RootElement';
+import { html, property, TemplateResult } from 'lit-element';
+import { RootElement, htmlElement } from '../../core';
 
-import './button.scss';
+import './style.scss';
 
-@customElement('ui-button')
+@htmlElement(`button`)
 export class Button extends RootElement {
   @property({ type: Boolean }) public pending = false;
   @property({ type: String }) public text = '';

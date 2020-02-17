@@ -1,11 +1,9 @@
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { html, customElement, TemplateResult, property } from 'lit-element';
-import { RootElement } from '../../common/RootElement';
+import { html, TemplateResult, property } from 'lit-element';
+import { RootElement, htmlElement } from '../../core';
 
-const TAG_NAME = 'ui-select-input';
-
-@customElement(TAG_NAME)
+@htmlElement('select-input')
 export class SelectInput extends RootElement {
   @property({ type: String, reflect: true }) value: string | undefined | null;
   @property({ type: Array, reflect: true }) options = [];
@@ -118,14 +116,14 @@ export class SelectInput extends RootElement {
       if (this.valueField) {
         value = option[this.valueField];
       } else {
-        throw new Error(`No value-field attribute found for ${TAG_NAME} element.`);
+        throw new Error(`No value-field attribute found for ${this.tagName} element.`);
       }
 
       if (!text) {
         if (this.textField) {
           text = option[this.textField];
         } else {
-          throw new Error(`No text-field attribute found for ${TAG_NAME} element.`);
+          throw new Error(`No text-field attribute found for ${this.tagName} element.`);
         }
       }
     }

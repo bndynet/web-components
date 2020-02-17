@@ -8,6 +8,7 @@ export abstract class RootElement extends LitElement {
 
   public constructor() {
     super();
+    this.classList.add(this.tagName);
   }
 
   protected createRenderRoot(): RootElement {

@@ -1,11 +1,10 @@
-import { html, customElement, TemplateResult, property } from 'lit-element';
+import { html, TemplateResult, property } from 'lit-element';
 import { SelectInput } from './select-input';
+import { htmlElement } from '../../core';
 
-import './select.scss';
+import './style.scss';
 
-const TAG_NAME = 'ui-select';
-
-@customElement(TAG_NAME)
+@htmlElement(`select`)
 export class Select extends SelectInput {
   @property({ type: String }) label = '';
 
