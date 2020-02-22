@@ -99,6 +99,20 @@ export class Chart extends RootElement {
             selected: false,
           };
         }),
+        tooltip: {
+          formatter: (params: any): string => {
+            return `<div class="${this.tagName.toLowerCase()}-tooltip">
+              <div class="category">
+                <span class="flag" style="background-color: ${params.color}"></span>
+                <span class="name">${params.name}</span>
+              </div>
+              <div class="item">
+                <span class="name">${params.value}</span>
+                <span class="value">${params.percent}%</span>
+              </div>
+            </div>`;
+          },
+        },
       };
       series.push(s);
     });
