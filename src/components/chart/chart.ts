@@ -124,7 +124,7 @@ export class Chart extends RootElement {
     const xKeys: string[] = this.data.map((item: any) => item[this.xKey]);
     const series: echarts.EChartOption.Series[] | any[] = [];
     const legend: string[] = [];
-    this.data.forEach((dataItem: string) => {
+    this.data.forEach((dataItem: string, index: number) => {
       Object.keys(dataItem).forEach((key: string) => {
         if (key !== this.xKey) {
           let curSeries = series.find((s: any) => s.name === key);
@@ -136,6 +136,18 @@ export class Chart extends RootElement {
               type: get(curSeriesStyles, 'type') || 'line',
               color: get(curSeriesStyles, 'color'),
               smooth: true,
+              tooltip: {
+                formatter: (params: any): string => {
+                  return `<div class="${this.tagName.toLowerCase()}-tooltip">
+                    <div class="category">${params.name}</div>
+                    <div class="item">
+                      <span class="flag" style="background-color: ${params.color}"></span>
+                      <span class="name">${params.seriesName}</span>
+                      <span class="value">${params.value}</span>
+                    </div>
+                  </div>`;
+                },
+              },
               data: [],
             };
             if (get(curSeriesStyles, 'type') === 'area') {
@@ -144,7 +156,7 @@ export class Chart extends RootElement {
             }
             series.push(curSeries);
           }
-          curSeries.data.push(dataItem[key]);
+          curSeries.data[index] = dataItem[key];
         }
       });
     });

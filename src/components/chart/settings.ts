@@ -12,7 +12,7 @@ export const registerColorSet = (name: string, colors: string[]): void => {
 export const globalOptions = {
   textStyle: {
     color: '#333333', // does not work for legend text, tooltip, chart title
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif',
   },
   title: {
@@ -30,6 +30,10 @@ export const globalOptions = {
     left: 80,
     right: 80,
   },
-  tooltip: {},
+  tooltip: {
+    color: '#ffffff',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    fontSize: 12,
+  },
   color: colorSet.default,
 };

@@ -4,5 +4,30 @@
   > div {
     width: 100%;
     height: 100%;
+
+    .#{$prefix}chart-tooltip {
+      padding: 0.25em;
+      font-size: 13px;
+      min-width: 120px;
+      .item {
+        display: flex;
+        align-items: center;
+        .flag {
+          height: 0.85em;
+          width: 0.85em;
+          border-radius: 3px;
+          margin-top: 0.15em;
+          margin-right: 0.3em;
+        }
+        .name {
+          flex: 1;
+          text-overflow: ellipsis;
+        }
+        .value {
+          margin-left: 1em;
+          text-align: right;
+        }
+      }
+    }
   }
 }
