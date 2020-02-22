@@ -1,0 +1,56 @@
+<web-chart style="height: 500px;" xKey="date"
+  data="[
+  { 'date': '2012-01-01', 'distance': 227, 'townSize': 12, 'latitude': 40.71, 'duration': 408 },
+  { 'date': '2012-01-02', 'distance': 371, 'townSize': 7, 'latitude': 38.89, 'duration': 482 },
+  { 'date': '2012-01-03', 'distance': 433, 'townSize': 3, 'latitude': 34.22, 'duration': 562 },
+  { 'date': '2012-01-04', 'distance': 345, 'townSize': 3.5, 'latitude': 30.35, 'duration': 379 },
+  { 'date': '2012-01-05', 'distance': 480, 'townSize': 5, 'latitude': 25.83, 'duration': 501 },
+  { 'date': '2012-01-06', 'distance': 386, 'townSize': 3.5, 'latitude': 30.46, 'duration': 443 },
+  { 'date': '2012-01-07', 'distance': 348, 'townSize': 5, 'latitude': 29.94, 'duration': 405 },
+  { 'date': '2012-01-08', 'distance': 238, 'townSize': 8, 'latitude': 29.76, 'duration': 309 },
+  { 'date': '2012-01-09', 'distance': 218, 'townSize': 8, 'latitude': 32.8, 'duration': 287 },
+  { 'date': '2012-01-10', 'distance': 349, 'townSize': 5, 'latitude': 35.49, 'duration': 485 },
+  { 'date': '2012-01-11', 'distance': 603, 'townSize': 5, 'latitude': 39.1, 'duration': 890 },
+  { 'date': '2012-01-12', 'distance': 534, 'townSize': 9, 'latitude': 39.74, 'duration': 810 },
+  { 'date': '2012-01-13', 'townSize': 6, 'distance': 425, 'duration': 670, 'latitude': 40.75, 'dashLength': 8, 'alpha': 0.4 },
+  { 'date': '2012-01-14', 'latitude': 36.1, 'duration': 470, },
+  { 'date': '2012-01-15' },
+  { 'date': '2012-01-16' },
+  { 'date': '2012-01-17' }
+  ]"
+>
+
+</web-chart>
+<web-chart style="width: 100%; height: 500px; display: inline-block;" title="Chart Title" subTitle="This is just en example." data="[
+{'Week': 'Mon', 'AAA': 12, 'BBB': 3232, 'CCC': 1213 },
+{'Week': 'Tue', 'AAA': 1231, 'BBB': 30 , 'CCC': 3435},
+{'Week': 'Wed', 'AAA': 1211, 'BBB': 2323, 'CCC': 232},
+{'Week': 'Thu', 'AAA': 989, 'BBB': 121, 'CCC': 12312 },
+{'Week': 'Fri', 'AAA': 1212, 'BBB': 232, 'CCC': 232},
+{'Week': 'Sta', 'AAA': 334, 'BBB': 23},
+{'Week': 'Sun', 'AAA': 121, 'BBB': 0}
+]" xkey="Week" styles="{
+    'series': {
+      'AAA': { 'color': '#67b7dc', 'type': 'line'},
+      'BBB': { 'color': '#dc67ab', 'type': 'bar'},
+      'CCC': { 'type': 'area'}
+    },
+    'axes': [
+      null,
+      {'name': 'Y#1', 'formatter': '{value}ml'}
+    ]
+  }" colors="['#ff0000', '#00ff00', '#0000ff']"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Simple Pie Chart" type="pie"
+  data="{'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Theme Pie Chart" type="pie" data="[
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}
+    ]" theme="material"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Theme Pie Chart" type="pie" data="[
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 201.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 401.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}
+    ]"></web-chart>
