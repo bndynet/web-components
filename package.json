@@ -1,6 +1,6 @@
 {
   "name": "@bndynet/web-components",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Web components based on bootstrap",
   "main": "dist/web-components.umd.js",
   "module": "dist/web-components.es5.js",

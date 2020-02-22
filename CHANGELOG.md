@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/bndynet/web-components/compare/v2.0.0...v2.1.0) (2020-02-22)
+
+
+### Bug Fixes
+
+* **chart:** series data parsing issue ([0732322](https://github.com/bndynet/web-components/commit/0732322))
+
+
+### Features
+
+* **chart:** redesign pie tooltip ([78b1ea7](https://github.com/bndynet/web-components/commit/78b1ea7))
+* **chart:** support XY and pie charts ([e322fc9](https://github.com/bndynet/web-components/commit/e322fc9))
+
 # [2.0.0](https://github.com/bndynet/web-components/compare/v1.2.0...v2.0.0) (2020-02-17)
 
 
