@@ -55,7 +55,9 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
+    "@types/echarts": "^4.4.3",
     "@types/jest": "^23.3.12",
+    "@types/lodash-es": "^4.17.3",
     "@types/node": "^12.11.7",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
@@ -95,17 +97,19 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint --config ./configs/commitlint.config.js -E HUSKY_GIT_PARAMS",
+      "commit-msg": "commitlint --config ./commitlint.config.js -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
-      "prettier --config ./configs/prettier.config.js --write",
+      "prettier --config ./prettier.config.js --write",
       "git add"
     ]
   },
   "dependencies": {
-    "lit-element": "^2.2.1"
+    "echarts": "^4.6.0",
+    "lit-element": "^2.2.1",
+    "lodash-es": "^4.17.15"
   }
 }

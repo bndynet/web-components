@@ -1,0 +1,33 @@
+<web-chart style="width: 100%; height: 500px; display: inline-block;" title="Chart Title" subTitle="This is just en example." data="[
+{'Week': 'Mon', 'AAA': 12, 'BBB': 3232, 'CCC': 1213 },
+{'Week': 'Tue', 'AAA': 1231, 'BBB': 30 , 'CCC': 3435},
+{'Week': 'Wed', 'AAA': 1211, 'BBB': 2323, 'CCC': 232},
+{'Week': 'Thu', 'AAA': 989, 'BBB': 121, 'CCC': 12312 },
+{'Week': 'Fri', 'AAA': 1212, 'BBB': 232, 'CCC': 232},
+{'Week': 'Sta', 'AAA': 334, 'BBB': 23},
+{'Week': 'Sun', 'AAA': 121, 'BBB': 0}
+]" xkey="Week" styles="{
+    'series': {
+      'AAA': { 'color': '#67b7dc', 'type': 'line'},
+      'BBB': { 'color': '#dc67ab', 'type': 'bar'},
+      'CCC': { 'type': 'area'}
+    },
+    'axes': [
+      null,
+      {'name': 'Y#1', 'formatter': '{value}ml'}
+    ]
+  }" colors="['#ff0000', '#00ff00', '#0000ff']"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Simple Pie Chart" type="pie"
+  data="{'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Theme Pie Chart" type="pie" data="[
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}
+    ]" theme="material"></web-chart>
+
+<web-chart style="width: 33%; height: 500px; display: inline-block;" title="Theme Pie Chart" type="pie" data="[
+    {'Lithuania': 501.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 201.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
+    {'Lithuania': 401.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}
+    ]"></web-chart>

@@ -1,3 +1,6 @@
+var components = ['Buttons', 'Charts', 'Loading', 'Indicators', 'Input', 'Select'];
+
+
 function appendNav(navText) {
   var eleMainNavs = $('#main-navs');
   var eleNav = $('<li class="nav-item"></li>');
@@ -19,7 +22,7 @@ function appendNav(navText) {
 
 $(function() {
   var navs = {
-    Components: ['Buttons', 'Loading', 'Indicators', 'Input', 'Select'],
+    Components: components,
   };
 
   setTimeout(function() {
