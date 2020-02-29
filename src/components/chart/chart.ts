@@ -52,6 +52,9 @@ export class Chart extends RootElement {
 
   public constructor() {
     super();
+    if (!echarts) {
+      throw new Error(`${this.tagName} requires "echarts" library.`);
+    }
   }
 
   public render(): TemplateResult {
