@@ -49,3 +49,7 @@ section pre {
   border-radius: 4px;
   background-color: #efefef;
 }
+
+web-chart[type=gauge] {
+  height: 400px;
+}
