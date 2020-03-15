@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import echarts from 'echarts';
-import { get, merge, clone } from 'lodash-es';
+import { get, merge, clone, map, union } from 'lodash-es';
 import { html, TemplateResult, property } from 'lit-element';
 import { RootElement, htmlElement, objectConverter } from '../../core';
 
@@ -8,9 +9,26 @@ import { colorSet, globalOptions } from './settings';
 
 import './style.scss';
 
+export interface SeriesStyles {
+  name?: string;
+  // for Pie, Line, Bar
+  color?: string;
+  type?: 'line' | 'area' | 'bar';
+  axisIndex?: number;
+  // unused
+  unit?: string;
+  // for Guage
+  min?: number;
+  max?: number;
+  valueSplitNumber?: number;
+  splitValues?: number[];
+  splitColors?: string[];
+}
 export interface ChartStyles {
   grid?: { borderColor?: string; borderWidth?: number };
-  series?: { color?: string; type?: 'line' | 'area' | 'bar'; axisIndex?: number }[];
+  series?: {
+    [key: string]: SeriesStyles;
+  };
   axes?: { name?: string; formatter?: string };
 }
 
@@ -18,6 +36,7 @@ export enum ChartType {
   Pie = 'pie',
   Line = 'line',
   Bar = 'bar',
+  Gauge = 'gauge',
 }
 
 const axisStyle = {
@@ -52,6 +71,9 @@ export class Chart extends RootElement {
 
   public constructor() {
     super();
+    if (!echarts) {
+      throw new Error(`${this.tagName} requires "echarts" library.`);
+    }
   }
 
   public render(): TemplateResult {
@@ -66,6 +88,10 @@ export class Chart extends RootElement {
     switch (this.type) {
       case ChartType.Pie:
         this.initPieChart();
+        break;
+
+      case ChartType.Gauge:
+        this.initGaugeChart();
         break;
 
       default:
@@ -179,6 +205,7 @@ export class Chart extends RootElement {
       xAxis: {
         name: get(this.styles, 'axes[0].name'),
         type: 'category',
+        boundaryGap: true,
         data: xKeys,
         axisLabel: {
           formatter: get(this.styles, 'axes[0].formatter'),
@@ -201,6 +228,155 @@ export class Chart extends RootElement {
     };
     option = merge({}, globalOptions, option, this.options);
     console.log(option);
+    this.chart && this.chart.setOption(option);
+  }
+
+  private initGaugeChart(): void {
+    const defaultColors = ['#228b22', '#48b', '#ff4500'];
+    const splits = [[0.2, defaultColors[0]], [0.8, defaultColors[1]], [1, defaultColors[2]]];
+    const seriesCount = Object.keys(this.data).length;
+    const majorRadius = (this.clientWidth / seriesCount > this.clientHeight ? this.clientHeight : this.clientWidth / seriesCount) / 2;
+    const minorRadius = majorRadius * 0.7;
+    const xUnitWidth = this.clientWidth / seriesCount;
+    const seriesOptions: any[] = [];
+    const getSeriesOption = (seriesStyles: SeriesStyles, radius: number, isMajor: boolean, reserveSeries: boolean): any => {
+      const baseWidth = radius * 0.08;
+      const colors = union(seriesStyles.splitColors, defaultColors, this._colors);
+      let seriesSplits = splits;
+      if (seriesStyles.splitValues) {
+        seriesSplits = map(seriesStyles.splitValues, (v: number, index: number) => {
+          return [v / seriesStyles.max!, colors[index]];
+        });
+      }
+      if (seriesSplits[seriesSplits.length - 1][0] < 1) {
+        seriesSplits.push([1, colors[seriesSplits.length]]);
+      }
+      const result = {
+        axisLine: {
+          lineStyle: {
+            width: isMajor ? baseWidth * 2 : baseWidth,
+            color: seriesSplits,
+          },
+        },
+        axisTick: {
+          length: isMajor ? baseWidth / 2 : baseWidth * 1.5,
+          lineStyle: {
+            // color: isMajor || reserveSeries ? '#ffffff' : 'auto',
+            color: isMajor ? '#ffffff' : 'auto',
+          },
+        },
+        splitLine: {
+          length: isMajor ? baseWidth * 2 : baseWidth * 2.25,
+          lineStyle: {
+            // color: isMajor || reserveSeries ? '#ffffff' : 'auto',
+            color: isMajor ? '#ffffff' : 'auto',
+          },
+        },
+      };
+
+      // if (reserveSeries) {
+      //   const reservedSeriesSplits: any[] = [];
+      //   seriesSplits.forEach((splits: any[], index: number) => {
+      //     reservedSeriesSplits.push([splits[0], seriesSplits[seriesSplits.length - 1 - index][1]]);
+      //   });
+      //   merge(result, {
+      //     axisTick: {
+      //       length: baseWidth / 2,
+      //     },
+      //     splitLine: {
+      //       length: baseWidth,
+      //     },
+      //     axisLabel: {
+      //       color: '#000',
+      //     },
+      //   });
+      // }
+
+      return result;
+    };
+    const getSplitNumber = (max: number | undefined, min?: number): number | null => {
+      if (typeof max !== 'undefined' && max < 10) {
+        return max - (min || 0);
+      }
+      return null;
+    };
+    switch (seriesCount) {
+      case 1:
+        seriesOptions.push({});
+        break;
+      case 2:
+        seriesOptions.push({
+          center: [this.clientWidth / 2 - minorRadius, '60%'],
+          radius: minorRadius,
+          endAngle: 45,
+        });
+        seriesOptions.push({
+          z: 3,
+          center: [this.clientWidth / 2 + majorRadius - minorRadius * 0.3, '50%'],
+          radius: majorRadius,
+        });
+        break;
+      case 3:
+        seriesOptions.push({
+          center: [this.clientWidth / 2 - majorRadius - minorRadius + minorRadius * 0.3, '60%'],
+          radius: minorRadius,
+          endAngle: 45,
+        });
+        seriesOptions.push({
+          z: 3,
+          radius: majorRadius,
+        });
+        seriesOptions.push({
+          ...seriesOptions[0],
+          ...{
+            center: [this.clientWidth / 2 + majorRadius + minorRadius - minorRadius * 0.3, '60%'],
+            startAngle: 135,
+            endAngle: -45,
+          },
+        });
+        break;
+
+      default:
+        for (let i = 0; i < seriesCount; i++) {
+          seriesOptions.push({
+            center: [xUnitWidth * (i + 0.5), '50%'],
+            radius: majorRadius - 20,
+          });
+        }
+        break;
+    }
+    const series = map(Object.keys(this.data), (key: string, index: number) => {
+      const isMajorSeries = seriesCount === 1 || ((seriesCount === 2 || seriesCount === 3) && index === 1);
+      const reserveSeries = seriesCount === 3 && index === 2;
+      const seriesStyles: SeriesStyles = (get(this.styles.series, key) || {
+        min: 0,
+        max: 100,
+      }) as SeriesStyles;
+      const result = merge(
+        {},
+        {
+          name: seriesStyles.name || key,
+          type: 'gauge',
+          min: seriesStyles.min,
+          max: seriesStyles.max,
+          // min: reserveSeries ? seriesStyles.max : seriesStyles.min,
+          // max: reserveSeries ? seriesStyles.min : seriesStyles.max,
+          clockwise: true, // !(index === 2 && seriesCount === 3),
+          detail: { formatter: `{value}` },
+          data: [{ name: key, value: this.data[key], symbol: 'image://data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7' }],
+          splitNumber: seriesStyles.valueSplitNumber || getSplitNumber(seriesStyles.max) || 10,
+          tooltip: {
+            formatter: seriesStyles.name ? '{a} <br/>{c} {b}' : '{c} {b}',
+            ...globalOptions.tooltip,
+          },
+        },
+        seriesOptions[index],
+        getSeriesOption(seriesStyles, isMajorSeries ? majorRadius : minorRadius, isMajorSeries, reserveSeries),
+      );
+      return result;
+    });
+    const option = merge({ tooltip: {} }, { series });
+    console.log(series);
     this.chart && this.chart.setOption(option);
   }
 

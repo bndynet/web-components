@@ -54,3 +54,48 @@
     {'Lithuania': 201.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8},
     {'Lithuania': 401.9, 'Czech Republic': 301.9, 'Ireland': 201.1, 'Germany': 165.8}
     ]"></web-chart>
+
+<web-chart type="gauge" data="{
+  'km/h': 120,
+}" styles="{
+  series: {
+    'km/h': { name: '时速', min: 0, max: 200 },
+  }
+}">
+</web-chart>
+<web-chart type="gauge" data="{
+  'x1000 r/min': 2.32,
+  'km/h': 69,
+}" styles="{
+  series: {
+    'x1000 r/min': { min: 0, max: 7, splitValues: [2, 5] },
+    'km/h': { min: 0, max: 200, splitValues: [120, 160], splitColors: ['#228b22', '#ff4500', '#ff0000'] },
+  }
+}">
+</web-chart>
+<web-chart type="gauge" data="{
+  'x1000 r/min': 2.32,
+  'km/h': 69,
+  'L': 20.1,
+}" styles="{
+  series: {
+    'x1000 r/min': { min: 0, max: 6, splitValues:[2, 4] },
+    'km/h': { min: 0, max: 200 },
+    'L': { min: 0, max: 80, valueSplitNumber: 4, splitValues: [10, 20], splitColors: ['#ff0000', 'rgb(255, 152, 0)'] },
+  }
+}">
+</web-chart>
+<web-chart type="gauge" data="{
+  'x1000 r/min': 1.32,
+  'km/h': 69,
+  'L': 54.4,
+  '万千米': 16.4,
+}" styles="{
+  series: {
+    'x1000 r/min': { min: 0, max: 7 },
+    'km/h': { min: 0, max: 200 },
+    'L': { min: 0, max: 80, valueSplitNumber: 8 },
+    '万千米': { min: 0, max: 20 }
+  }
+}">
+</web-chart>

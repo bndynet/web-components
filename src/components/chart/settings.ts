@@ -34,6 +34,7 @@ export const globalOptions = {
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     fontSize: 12,
+    padding: [5, 10],
   },
   color: colorSet.default,
 };
