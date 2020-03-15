@@ -1,3 +1,11 @@
+# [2.2.0](https://github.com/bndynet/web-components/compare/v2.1.0...v2.2.0) (2020-03-15)
+
+
+### Features
+
+* **chart:** exclude echarts as optional library if no need ([280199f](https://github.com/bndynet/web-components/commit/280199f))
+* **chart:** support gauge chart ([f9c13aa](https://github.com/bndynet/web-components/commit/f9c13aa))
+
 # [2.1.0](https://github.com/bndynet/web-components/compare/v2.0.0...v2.1.0) (2020-02-22)
 
 
