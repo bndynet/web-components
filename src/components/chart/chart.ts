@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import echarts from 'echarts';
-import { get, merge, clone, map, union } from 'lodash-es';
+import { get, merge, clone, map, union, countBy, find } from 'lodash-es';
 import { html, TemplateResult, property } from 'lit-element';
 import { RootElement, htmlElement, objectConverter } from '../../core';
 
@@ -200,12 +200,13 @@ export class Chart extends RootElement {
         }
       });
     });
+    const xAxisStartWithZero = !find(series, (serie: any) => serie.type === 'bar');
     let option: echarts.EChartOption = {
       title: this.getTitleOption(),
       xAxis: {
         name: get(this.styles, 'axes[0].name'),
         type: 'category',
-        boundaryGap: true,
+        boundaryGap: !xAxisStartWithZero,
         data: xKeys,
         axisLabel: {
           formatter: get(this.styles, 'axes[0].formatter'),
