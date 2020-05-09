@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/bndynet/web-components/compare/v2.2.0...v2.2.1) (2020-05-09)
+
+
+### Bug Fixes
+
+* **chart:** xAxis start from zero if all lines and areas ([a1672a4](https://github.com/bndynet/web-components/commit/a1672a4))
+
 # [2.2.0](https://github.com/bndynet/web-components/compare/v2.1.0...v2.2.0) (2020-03-15)
 
 
